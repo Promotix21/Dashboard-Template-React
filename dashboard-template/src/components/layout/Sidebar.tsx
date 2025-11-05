@@ -45,8 +45,8 @@ const Sidebar = () => {
             <Sparkles className="w-6 h-6 text-white" />
           </motion.div>
           <div>
-            <h1 className="text-xl font-display font-bold text-gradient">SpurNitro</h1>
-            <p className="text-xs text-navy-500">AI-Powered SaaS</p>
+            <h1 className="text-xl font-display font-bold text-gradient">Nexara</h1>
+            <p className="text-xs text-navy-500">AI-Powered Platform</p>
           </div>
         </div>
       </div>

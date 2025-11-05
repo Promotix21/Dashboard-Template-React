@@ -8,6 +8,9 @@ interface SidebarContextType {
   setActiveSection: (section: string | null) => void;
   isPinned: boolean;
   togglePin: () => void;
+  isMobileMenuOpen: boolean;
+  setIsMobileMenuOpen: (isOpen: boolean) => void;
+  toggleMobileMenu: () => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
@@ -16,6 +19,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isPinned, setIsPinned] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleCollapse = () => {
     setIsCollapsed((prev) => !prev);
@@ -28,6 +32,10 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
     setIsPinned((prev) => !prev);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
   return (
     <SidebarContext.Provider
       value={{
@@ -37,6 +45,9 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
         setActiveSection,
         isPinned,
         togglePin,
+        isMobileMenuOpen,
+        setIsMobileMenuOpen,
+        toggleMobileMenu,
       }}
     >
       {children}

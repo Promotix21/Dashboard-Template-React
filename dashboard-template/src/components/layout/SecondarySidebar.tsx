@@ -144,18 +144,40 @@ const SecondarySidebar = () => {
     }
   };
 
+  const handleLinkClick = () => {
+    // Close secondary sidebar on mobile when clicking a link
+    if (window.innerWidth < 1024 && !isPinned) {
+      setActiveSection(null);
+    }
+  };
+
   return (
-    <AnimatePresence>
-      {content && (
-        <motion.aside
-          initial={{ x: -280, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -280, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed left-16 top-0 h-screen w-[280px] bg-white dark:bg-navy-800 border-r border-cream-200 dark:border-navy-700 shadow-lg z-40 overflow-y-auto custom-scrollbar"
-        >
+    <>
+      {/* Mobile Overlay */}
+      <AnimatePresence>
+        {content && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleClose}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Secondary Sidebar */}
+      <AnimatePresence>
+        {content && (
+          <motion.aside
+            initial={{ x: -280, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -280, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed left-0 lg:left-16 top-0 h-screen w-[280px] bg-white dark:bg-navy-900 border-r border-cream-200 dark:border-navy-800 shadow-lg z-40 overflow-y-auto custom-scrollbar"
+          >
           {/* Header */}
-          <div className="p-4 border-b border-cream-200 dark:border-navy-700">
+          <div className="p-4 border-b border-cream-200 dark:border-navy-800">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-display font-bold text-navy-900 dark:text-cream-50">
                 {content.title}
@@ -167,8 +189,8 @@ const SecondarySidebar = () => {
                   onClick={togglePin}
                   className={`p-1.5 rounded-lg transition-colors ${
                     isPinned
-                      ? 'bg-primary-100 text-primary-600 dark:bg-primary-900 dark:text-primary-400'
-                      : 'hover:bg-cream-100 dark:hover:bg-navy-700 text-navy-600 dark:text-cream-300'
+                      ? 'bg-primary-100 text-primary-600 dark:bg-primary-900/50 dark:text-primary-400'
+                      : 'hover:bg-cream-100 dark:hover:bg-navy-800 text-navy-600 dark:text-cream-300'
                   }`}
                   title={isPinned ? 'Unpin' : 'Pin sidebar'}
                 >
@@ -179,7 +201,7 @@ const SecondarySidebar = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={handleClose}
-                    className="p-1.5 rounded-lg hover:bg-cream-100 dark:hover:bg-navy-700 text-navy-600 dark:text-cream-300 transition-colors"
+                    className="p-1.5 rounded-lg hover:bg-cream-100 dark:hover:bg-navy-800 text-navy-600 dark:text-cream-300 transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </motion.button>
@@ -194,7 +216,7 @@ const SecondarySidebar = () => {
                 <input
                   type="text"
                   placeholder={content.search}
-                  className="w-full pl-9 pr-4 py-2 text-sm rounded-lg border border-navy-200 dark:border-navy-600 bg-white dark:bg-navy-700 text-navy-900 dark:text-cream-50 focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-primary-500 placeholder:text-navy-400 dark:placeholder:text-navy-500"
+                  className="w-full pl-9 pr-4 py-2 text-sm rounded-lg border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-cream-50 focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-primary-500 placeholder:text-navy-400 dark:placeholder:text-navy-500"
                 />
               </div>
             )}
@@ -219,7 +241,7 @@ const SecondarySidebar = () => {
                           className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                             item.primary
                               ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 font-semibold'
-                              : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-700'
+                              : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-800'
                           }`}
                         >
                           {item.icon && <item.icon className="w-4 h-4" />}
@@ -233,7 +255,8 @@ const SecondarySidebar = () => {
                         <NavLink
                           key={itemIdx}
                           to={item.href}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-700 transition-colors"
+                          onClick={handleLinkClick}
+                          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-800 transition-colors"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-primary-500"></div>
                           <span>{item.label}</span>
@@ -245,11 +268,12 @@ const SecondarySidebar = () => {
                       <NavLink
                         key={itemIdx}
                         to={item.href}
+                        onClick={handleLinkClick}
                         className={({ isActive }) =>
                           `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                             isActive
                               ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-medium'
-                              : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-700'
+                              : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-800'
                           }`
                         }
                       >
@@ -270,6 +294,7 @@ const SecondarySidebar = () => {
         </motion.aside>
       )}
     </AnimatePresence>
+    </>
   );
 };
 

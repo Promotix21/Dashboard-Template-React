@@ -109,7 +109,7 @@ const Sidebar = () => {
           opacity: 1
         }}
         className={`
-          fixed left-0 top-0 h-screen w-16 bg-gradient-to-b from-white to-cream-50 dark:from-navy-950 dark:to-navy-900
+          fixed left-0 top-16 lg:top-0 h-[calc(100vh-4rem)] lg:h-screen w-16 bg-gradient-to-b from-white to-cream-50 dark:from-navy-950 dark:to-navy-900
           border-r border-cream-200 dark:border-navy-800 shadow-lg flex flex-col z-[60]
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           transition-transform duration-300 ease-in-out
@@ -127,7 +127,8 @@ const Sidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-4 space-y-2 overflow-y-auto custom-scrollbar">
+      <nav className="flex-1 py-4 overflow-visible">
+        <div className="space-y-2">
         {navigation.map((item, index) => {
           const isSecondaryActive = activeSection === item.section && item.section !== null;
 
@@ -181,6 +182,7 @@ const Sidebar = () => {
             </motion.div>
           );
         })}
+        </div>
       </nav>
 
       {/* Bottom Upgrade Badge */}

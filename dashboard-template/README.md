@@ -76,6 +76,50 @@ Fonts are imported from Google Fonts:
 ### Demo Data
 All demo data is in `src/data/demoData.ts` - replace with real API calls.
 
+## 🔗 Backend Integration
+
+This is currently a **frontend-only template** with demo data. To connect to a real backend:
+
+### Option 1: Vercel Serverless Functions (Recommended - FREE)
+Perfect for getting started quickly with the same platform:
+- Create `/api` folder in project root
+- Add TypeScript functions (see `examples/api-serverless-example.ts`)
+- Deploy automatically with your frontend
+- **Zero cost** for small apps
+
+### Option 2: Separate Backend (Railway, Render, Fly.io)
+For more complex backends with databases:
+- Node.js + Express + PostgreSQL
+- Python + FastAPI + PostgreSQL
+- **FREE tier** available on all platforms
+
+### Full Integration Guide
+See **[BACKEND_INTEGRATION.md](./BACKEND_INTEGRATION.md)** for:
+- Complete setup instructions
+- Free hosting options comparison
+- API integration patterns
+- Database setup examples
+- Authentication flow
+- Environment variables
+- CORS configuration
+- Deployment strategy
+
+### Quick Example
+```typescript
+// src/services/api.ts
+import axios from 'axios';
+
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001/api',
+});
+
+// src/services/customers.ts
+export const customerAPI = {
+  getAll: () => api.get('/customers'),
+  create: (data) => api.post('/customers', data),
+};
+```
+
 ## 📝 Environment Variables
 
 No environment variables required for the template. Add your own as needed for API connections.

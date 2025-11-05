@@ -94,7 +94,7 @@ const Sidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] lg:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
@@ -110,13 +110,13 @@ const Sidebar = () => {
         }}
         className={`
           fixed left-0 top-0 h-screen w-16 bg-gradient-to-b from-white to-cream-50 dark:from-navy-950 dark:to-navy-900
-          border-r border-cream-200 dark:border-navy-800 shadow-lg overflow-y-auto custom-scrollbar z-50
+          border-r border-cream-200 dark:border-navy-800 shadow-lg flex flex-col z-[60]
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           transition-transform duration-300 ease-in-out
         `}
       >
       {/* Logo */}
-      <div className="h-16 flex items-center justify-center border-b border-cream-200 dark:border-navy-800">
+      <div className="h-16 flex items-center justify-center border-b border-cream-200 dark:border-navy-800 flex-shrink-0">
         <motion.div
           whileHover={{ rotate: 360, scale: 1.1 }}
           transition={{ duration: 0.5 }}
@@ -127,7 +127,7 @@ const Sidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="py-4 space-y-2">
+      <nav className="flex-1 py-4 space-y-2 overflow-y-auto custom-scrollbar">
         {navigation.map((item, index) => {
           const isSecondaryActive = activeSection === item.section && item.section !== null;
 
@@ -174,7 +174,7 @@ const Sidebar = () => {
               </NavLink>
 
               {/* Tooltip */}
-              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-navy-900 dark:bg-cream-50 text-white dark:text-navy-900 text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap pointer-events-none z-50">
+              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-navy-900 dark:bg-cream-50 text-white dark:text-navy-900 text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap pointer-events-none z-[70]">
                 {item.name}
                 <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-navy-900 dark:border-r-cream-50"></div>
               </div>
@@ -184,7 +184,7 @@ const Sidebar = () => {
       </nav>
 
       {/* Bottom Upgrade Badge */}
-      <div className="absolute bottom-4 left-2 right-2">
+      <div className="flex-shrink-0 p-2 pb-4">
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-white cursor-pointer shadow-glow relative group"
@@ -192,7 +192,7 @@ const Sidebar = () => {
           <span className="text-xl font-bold">↑</span>
 
           {/* Tooltip */}
-          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-navy-900 dark:bg-cream-50 text-white dark:text-navy-900 text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap pointer-events-none z-50">
+          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-navy-900 dark:bg-cream-50 text-white dark:text-navy-900 text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap pointer-events-none z-[70]">
             Upgrade to Pro
             <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-navy-900 dark:border-r-cream-50"></div>
           </div>

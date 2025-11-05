@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/80 dark:bg-navy-950/90 backdrop-blur-md border-b border-cream-200 dark:border-navy-800 shadow-sm">
+      <header className="sticky top-0 z-50 bg-white/80 dark:bg-navy-950/90 backdrop-blur-md border-b border-cream-200 dark:border-navy-800 shadow-sm">
         <div className="flex items-center justify-between px-4 lg:px-8 py-4 gap-4">
           {/* Mobile Menu Button */}
           <motion.button
@@ -44,17 +44,29 @@ const Header = () => {
 
           {/* Search */}
           <div className="flex-1 max-w-xl">
+            {/* Mobile: Icon only */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsSearchOpen(true)}
+              className="md:hidden p-2 rounded-lg text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-800 transition-colors"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </motion.button>
+
+            {/* Desktop: Full search bar */}
             <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               onClick={() => setIsSearchOpen(true)}
-              className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-900 hover:border-primary-400 dark:hover:border-primary-500 transition-all group"
+              className="hidden md:flex w-full items-center gap-3 px-4 py-2.5 rounded-lg border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-900 hover:border-primary-400 dark:hover:border-primary-500 transition-all group"
             >
               <Search className="w-5 h-5 text-navy-400 dark:text-navy-500 group-hover:text-primary-500 transition-colors" />
               <span className="flex-1 text-left text-navy-400 dark:text-navy-500 text-sm">
                 Search customers, conversations, automations...
               </span>
-              <kbd className="hidden sm:flex items-center gap-0.5 px-2 py-1 text-xs font-mono text-navy-500 dark:text-navy-400 bg-cream-100 dark:bg-navy-700 rounded border border-navy-200 dark:border-navy-600">
+              <kbd className="hidden lg:flex items-center gap-0.5 px-2 py-1 text-xs font-mono text-navy-500 dark:text-navy-400 bg-cream-100 dark:bg-navy-700 rounded border border-navy-200 dark:border-navy-600">
                 <span className="text-xs">⌘</span>K
               </kbd>
             </motion.button>

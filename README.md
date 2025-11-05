@@ -1,6 +1,6 @@
-# SpurNitro Dashboard Template
+# Nexara Dashboard Template
 
-A modern, animated React dashboard template built for the **SpurNow + Nitro Commerce** unified platform.
+A modern, animated React dashboard template built for the **Nexara** AI-powered multi-channel communication and commerce platform.
 
 ## 🎨 Design Features
 
@@ -200,7 +200,7 @@ All demo data is centralized in `src/data/demoData.ts`:
 
 ## 📄 License
 
-This template is created for SpurNow + Nitro Commerce platform.
+This template is created for the Nexara platform.
 
 ---
 

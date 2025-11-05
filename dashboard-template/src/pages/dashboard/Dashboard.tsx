@@ -33,20 +33,20 @@ const Dashboard = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between"
+        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
       >
         <div>
-          <h1 className="text-4xl font-display font-bold text-navy-900 mb-2">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-navy-900 dark:text-cream-50 mb-2">
             Welcome back, <span className="text-gradient">Snehal!</span>
           </h1>
-          <p className="text-navy-600">
+          <p className="text-navy-600 dark:text-cream-300 text-sm md:text-base">
             Here's what's happening with your business today
           </p>
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="btn-primary"
+          className="btn-primary self-start md:self-auto"
         >
           Download Report
         </motion.button>
@@ -100,10 +100,10 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-display font-bold text-navy-900">
+              <h3 className="text-base md:text-lg font-display font-bold text-navy-900 dark:text-cream-50">
                 Conversation Trends
               </h3>
-              <p className="text-sm text-navy-500">Last 6 months</p>
+              <p className="text-sm text-navy-500 dark:text-cream-400">Last 6 months</p>
             </div>
             <span className="badge-success">+23.5%</span>
           </div>
@@ -146,10 +146,10 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-display font-bold text-navy-900">
+              <h3 className="text-base md:text-lg font-display font-bold text-navy-900 dark:text-cream-50">
                 Revenue Growth
               </h3>
-              <p className="text-sm text-navy-500">Last 6 months</p>
+              <p className="text-sm text-navy-500 dark:text-cream-400">Last 6 months</p>
             </div>
             <span className="badge-primary">Growing</span>
           </div>
@@ -180,7 +180,7 @@ const Dashboard = () => {
           transition={{ delay: 0.4 }}
           className="card"
         >
-          <h3 className="text-lg font-display font-bold text-navy-900 mb-6">
+          <h3 className="text-base md:text-lg font-display font-bold text-navy-900 dark:text-cream-50 mb-6">
             Messages by Channel
           </h3>
           <ResponsiveContainer width="100%" height={250}>
@@ -212,10 +212,10 @@ const Dashboard = () => {
           className="card lg:col-span-2"
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-display font-bold text-navy-900">
+            <h3 className="text-base md:text-lg font-display font-bold text-navy-900 dark:text-cream-50">
               Recent Conversations
             </h3>
-            <button className="text-sm text-primary-600 font-semibold hover:text-primary-700">
+            <button className="text-sm text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300">
               View All →
             </button>
           </div>
@@ -226,14 +226,14 @@ const Dashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-lg hover:bg-cream-50 transition-colors cursor-pointer"
+                className="flex items-center gap-4 p-4 rounded-lg hover:bg-cream-50 dark:hover:bg-navy-700/50 transition-colors cursor-pointer"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-semibold text-sm md:text-base">
                   {conv.customer.initials}
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-semibold text-navy-900">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h4 className="font-semibold text-navy-900 dark:text-cream-50 text-sm md:text-base">
                       {conv.customer.name}
                     </h4>
                     <span
@@ -248,10 +248,10 @@ const Dashboard = () => {
                       {conv.channel}
                     </span>
                   </div>
-                  <p className="text-sm text-navy-600">{conv.lastMessage}</p>
+                  <p className="text-xs md:text-sm text-navy-600 dark:text-cream-300 truncate">{conv.lastMessage}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs text-navy-500">{conv.timestamp}</p>
+                <div className="text-right flex-shrink-0">
+                  <p className="text-xs text-navy-500 dark:text-cream-400">{conv.timestamp}</p>
                   {conv.unread && (
                     <span className="inline-block w-2 h-2 bg-primary-500 rounded-full mt-1"></span>
                   )}
@@ -269,10 +269,10 @@ const Dashboard = () => {
         transition={{ delay: 0.7 }}
         className="card"
       >
-        <h3 className="text-lg font-display font-bold text-navy-900 mb-4">
+        <h3 className="text-base md:text-lg font-display font-bold text-navy-900 dark:text-cream-50 mb-4">
           Quick Actions
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {[
             { icon: Zap, label: 'Create Automation', color: 'from-primary-500 to-primary-600' },
             { icon: MessageSquare, label: 'New Broadcast', color: 'from-teal-500 to-teal-600' },
@@ -286,10 +286,10 @@ const Dashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 + index * 0.1 }}
-              className={`flex flex-col items-center gap-3 p-6 rounded-xl bg-gradient-to-br ${action.color} text-white shadow-md hover:shadow-lg transition-shadow`}
+              className={`flex flex-col items-center gap-2 md:gap-3 p-4 md:p-6 rounded-xl bg-gradient-to-br ${action.color} text-white shadow-md hover:shadow-lg transition-shadow`}
             >
-              <action.icon className="w-8 h-8" />
-              <span className="font-semibold text-sm">{action.label}</span>
+              <action.icon className="w-6 h-6 md:w-8 md:h-8" />
+              <span className="font-semibold text-xs md:text-sm text-center">{action.label}</span>
             </motion.button>
           ))}
         </div>

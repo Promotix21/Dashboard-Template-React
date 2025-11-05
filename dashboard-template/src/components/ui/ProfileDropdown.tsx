@@ -44,7 +44,7 @@ const ProfileDropdown = () => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-cream-100 dark:hover:bg-navy-700 transition-colors cursor-pointer"
+        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-cream-100 dark:hover:bg-navy-800 transition-colors cursor-pointer"
       >
         <div className="text-right hidden sm:block">
           <p className="text-sm font-semibold text-navy-900 dark:text-cream-50">Snehal Panchal</p>
@@ -54,7 +54,7 @@ const ProfileDropdown = () => {
           <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-semibold shadow-md">
             SP
           </div>
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-navy-800 rounded-full"></div>
+          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-navy-950 rounded-full"></div>
         </div>
       </motion.div>
 
@@ -65,10 +65,10 @@ const ProfileDropdown = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-64 bg-white dark:bg-navy-800 rounded-xl shadow-lg border border-cream-200 dark:border-navy-700 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-64 bg-white dark:bg-navy-900 rounded-xl shadow-lg border border-cream-200 dark:border-navy-800 overflow-hidden z-50"
           >
             {/* User Info */}
-            <div className="p-4 border-b border-cream-200 dark:border-navy-700">
+            <div className="p-4 border-b border-cream-200 dark:border-navy-800">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
                   SP
@@ -90,7 +90,7 @@ const ProfileDropdown = () => {
                 item.divider ? (
                   <div
                     key={`divider-${index}`}
-                    className="my-2 border-t border-cream-200 dark:border-navy-700"
+                    className="my-2 border-t border-cream-200 dark:border-navy-800"
                   />
                 ) : (
                   <motion.button
@@ -105,7 +105,7 @@ const ProfileDropdown = () => {
                     className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                       item.danger
                         ? 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20'
-                        : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-700'
+                        : 'text-navy-700 dark:text-cream-200 hover:bg-cream-100 dark:hover:bg-navy-800'
                     }`}
                   >
                     {item.icon && <item.icon className="w-4 h-4" />}

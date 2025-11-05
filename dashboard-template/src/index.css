@@ -38,9 +38,10 @@
   --color-navy-400: #8A94B8;
   --color-navy-500: #6B76A3;
   --color-navy-600: #58608D;
-  --color-navy-700: #4A5073;
-  --color-navy-800: #3F4460;
-  --color-navy-900: #2C3E50;
+  --color-navy-700: #3F4460;
+  --color-navy-800: #2C3E50;
+  --color-navy-900: #1A2332;
+  --color-navy-950: #0F1419;
 
   --color-teal-400: #26D0CE;
   --color-teal-500: #00BCD4;
@@ -88,7 +89,7 @@ body {
 }
 
 body.dark {
-  @apply bg-navy-900 text-cream-50;
+  @apply bg-navy-950 text-cream-50;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -130,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark .gradient-bg {
-  background: linear-gradient(135deg, #2C3E50 0%, #3F4460 50%, #4A5073 100%);
+  background: linear-gradient(135deg, #0F1419 0%, #1A2332 50%, #2C3E50 100%);
 }
 
 /* Button Styles */

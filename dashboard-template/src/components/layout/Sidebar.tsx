@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
   MessageSquare,
@@ -12,6 +12,7 @@ import {
   Plug,
 } from 'lucide-react';
 import { useSidebar } from '../../contexts/SidebarContext';
+import { useEffect } from 'react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard, section: null },
@@ -26,7 +27,7 @@ const navigation = [
 ];
 
 const Sidebar = () => {
-  const { activeSection, setActiveSection, isPinned } = useSidebar();
+  const { activeSection, setActiveSection, isPinned, isMobileMenuOpen, setIsMobileMenuOpen } = useSidebar();
 
   const handleItemClick = (section: string | null) => {
     if (section) {
@@ -40,16 +41,82 @@ const Sidebar = () => {
         setActiveSection(null);
       }
     }
+    // Close mobile menu when navigating on mobile
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById('mobile-sidebar');
+      const hamburger = document.getElementById('hamburger-menu');
+      if (
+        isMobileMenuOpen &&
+        sidebar &&
+        hamburger &&
+        !sidebar.contains(event.target as Node) &&
+        !hamburger.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen, setIsMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <motion.aside
-      initial={{ x: -20, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      className="fixed left-0 top-0 h-screen w-16 bg-gradient-to-b from-white to-cream-50 dark:from-navy-900 dark:to-navy-800 border-r border-cream-200 dark:border-navy-700 shadow-lg overflow-y-auto custom-scrollbar z-50"
-    >
+    <>
+      {/* Mobile Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Sidebar */}
+      <motion.aside
+        id="mobile-sidebar"
+        initial={{ x: -20, opacity: 0 }}
+        animate={{
+          x: isMobileMenuOpen ? 0 : 0,
+          opacity: 1
+        }}
+        className={`
+          fixed left-0 top-0 h-screen w-16 bg-gradient-to-b from-white to-cream-50 dark:from-navy-950 dark:to-navy-900
+          border-r border-cream-200 dark:border-navy-800 shadow-lg overflow-y-auto custom-scrollbar z-50
+          ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+          transition-transform duration-300 ease-in-out
+        `}
+      >
       {/* Logo */}
-      <div className="h-16 flex items-center justify-center border-b border-cream-200 dark:border-navy-700">
+      <div className="h-16 flex items-center justify-center border-b border-cream-200 dark:border-navy-800">
         <motion.div
           whileHover={{ rotate: 360, scale: 1.1 }}
           transition={{ duration: 0.5 }}
@@ -79,7 +146,7 @@ const Sidebar = () => {
                   const baseClasses = 'relative flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-200';
                   const activeClasses = isActive || isSecondaryActive
                     ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md'
-                    : 'text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-700 hover:text-primary-600 dark:hover:text-primary-400';
+                    : 'text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-800 hover:text-primary-600 dark:hover:text-primary-400';
 
                   return `${baseClasses} ${activeClasses}`;
                 }}
@@ -131,7 +198,8 @@ const Sidebar = () => {
           </div>
         </motion.div>
       </div>
-    </motion.aside>
+      </motion.aside>
+    </>
   );
 };
 

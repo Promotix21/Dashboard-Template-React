@@ -84,7 +84,7 @@ const NotificationDropdown = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-lg text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-700 transition-colors"
+        className="relative p-2 rounded-lg text-navy-600 dark:text-cream-300 hover:bg-cream-100 dark:hover:bg-navy-800 transition-colors"
       >
         <Bell className="w-5 h-5" />
         {unreadCount > 0 && (
@@ -105,10 +105,10 @@ const NotificationDropdown = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-80 bg-white dark:bg-navy-800 rounded-xl shadow-lg border border-cream-200 dark:border-navy-700 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-80 bg-white dark:bg-navy-900 rounded-xl shadow-lg border border-cream-200 dark:border-navy-800 overflow-hidden z-50"
           >
             {/* Header */}
-            <div className="p-4 border-b border-cream-200 dark:border-navy-700 flex items-center justify-between">
+            <div className="p-4 border-b border-cream-200 dark:border-navy-800 flex items-center justify-between">
               <div>
                 <h3 className="font-display font-bold text-navy-900 dark:text-cream-50">
                   Notifications
@@ -147,8 +147,8 @@ const NotificationDropdown = () => {
                     key={notification.id}
                     whileHover={{ backgroundColor: 'rgba(0,0,0,0.02)' }}
                     onClick={() => markAsRead(notification.id)}
-                    className={`p-4 border-b border-cream-100 dark:border-navy-700 cursor-pointer transition-colors ${
-                      !notification.read ? 'bg-primary-50/50 dark:bg-primary-900/10' : ''
+                    className={`p-4 border-b border-cream-100 dark:border-navy-800 cursor-pointer transition-colors ${
+                      !notification.read ? 'bg-primary-50/50 dark:bg-primary-900/20' : ''
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -176,7 +176,7 @@ const NotificationDropdown = () => {
             </div>
 
             {/* Footer */}
-            <div className="p-3 border-t border-cream-200 dark:border-navy-700 text-center">
+            <div className="p-3 border-t border-cream-200 dark:border-navy-800 text-center">
               <button className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold">
                 View all notifications
               </button>

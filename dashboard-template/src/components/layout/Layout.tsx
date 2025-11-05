@@ -11,9 +11,13 @@ const Layout = () => {
     <div className="min-h-screen gradient-bg dark:bg-gradient-to-b dark:from-navy-900 dark:to-navy-800">
       <Sidebar />
       <SecondarySidebar />
-      <div className={`transition-all duration-300 ${activeSection ? 'ml-[296px]' : 'ml-16'}`}>
+      <div className={`
+        transition-all duration-300
+        ml-0 lg:ml-16
+        ${activeSection ? 'lg:ml-[344px]' : 'lg:ml-16'}
+      `}>
         <Header />
-        <main className="p-8">
+        <main className="p-4 md:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

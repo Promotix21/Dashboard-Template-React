@@ -174,7 +174,7 @@ const SecondarySidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -280, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed left-0 lg:left-16 top-0 h-screen w-[280px] bg-white dark:bg-navy-900 border-r border-cream-200 dark:border-navy-800 shadow-lg z-40 overflow-y-auto custom-scrollbar"
+            className="fixed left-0 lg:left-16 top-16 lg:top-0 h-[calc(100vh-4rem)] lg:h-screen w-[280px] bg-white dark:bg-navy-900 border-r border-cream-200 dark:border-navy-800 shadow-lg z-40 overflow-y-auto custom-scrollbar"
           >
           {/* Header */}
           <div className="p-4 border-b border-cream-200 dark:border-navy-800">
